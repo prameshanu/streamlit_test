@@ -36,17 +36,13 @@ class ClaudeLLM:
             self.api_key = api_key
             self.model = model
             self.base_url = "https://api.anthropic.com/v1/complete"
-            self.headers = {
-                "x-api-key": self.api_key,
-                "Content-Type": "application/json",
-                "anthropic-version": "2023-06-01",
-            }
+
 
         def query(self, prompt, max_tokens=1024):
                 
                 client = anthropic.Client(
                     # defaults to os.environ.get("ANTHROPIC_API_KEY")
-                    api_key=my_api_key,
+                    api_key=self.api_key,
                 )
                 # Ensure the prompt starts with the correct conversational structure
                 message = client.messages.create(
