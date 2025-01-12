@@ -31,6 +31,7 @@ st.title('Test')
 
 if isinstance(output, list) and 'generated_text' in output[0]:
 	# Extract the answer
+	generated_text = output[0]['generated_text']
 	if "Answer:" in generated_text:
 		answer = generated_text.split("Answer:")[1].strip()
 		st.write(answer)
