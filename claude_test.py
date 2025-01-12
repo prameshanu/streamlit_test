@@ -240,7 +240,7 @@ headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 st.title('Ancient Greek Q & A Chatbot ')
 
 input_text=st.text_input("Search the topic u want")
-a = documents[0].metadata['source'].split('/')[-1]
+a = documents[0].metadata['source'].split('/')[-1][10:]
 b= documents[0].metadata['source'][-1]
 st.write(a)
 st.write(b)
