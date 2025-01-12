@@ -7,5 +7,10 @@ pinecone
 pinecone-client
 pinecone-notebooks
 pinecone-text
+nltk
+numpy
+python-dotenv
+pandas
+anthropic
 
 streamlit
