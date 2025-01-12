@@ -255,13 +255,12 @@ if input_text:
 				"content": prompt
 			}
 		]
-		
 		completion = client.chat.completions.create(
-		    model="mistralai/Mistral-7B-Instruct-v0.2", 
+			model="mistralai/Mistral-7B-Instruct-v0.2", 
 			messages=messages, 
 			max_tokens=500
 		)
-	        st.write(completion.choices[0].message.content)
+		st.write(completion.choices[0].message.content)
 	else:
 	        st.write("I don't have enough information to answer this question.")
 
