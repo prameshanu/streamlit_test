@@ -246,9 +246,8 @@ def rag(input_text):
 				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
 		
 	
-	st.write(source)
 	if source != set():
-		source_info = f"This answer is based on information from {source}" 
+		source_info = f"This answer is based on information from the files :  {list(source)}" 
 	else:
 		source_info = "Source information not available."
 	
