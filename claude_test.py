@@ -1,20 +1,38 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
 import streamlit as st
+import anthropic
 
-# Load model and tokenizer
-model_name = "tiiuae/falcon-7b"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", torch_dtype=torch.float16)
+# Claude API Key (keep this secure!)
+API_KEY = "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"
 
-# Define Streamlit app
-st.title("Falcon-7B Streamlit App")
-st.write("Ask a question, and Falcon-7B will answer!")
+# Initialize the Claude client
+client = anthropic.Client(api_key=API_KEY)
 
-prompt = st.text_area("Your prompt:")
-if st.button("Generate"):
-    with st.spinner("Generating response..."):
-        inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
-        outputs = model.generate(**inputs, max_length=100, pad_token_id=tokenizer.eos_token_id)
-        response = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    st.success("Response generated!")
-    st.write(response)
+# Function to query Claude model
+def query_claude(prompt, max_tokens=300):
+    try:
+        response = client.completion(
+            model="claude-2",
+            prompt=f"{anthropic.HUMAN_PROMPT} {prompt} {anthropic.AI_PROMPT}",
+            max_tokens_to_sample=max_tokens,
+            stop_sequences=[anthropic.HUMAN_PROMPT]
+        )
+        return response.get("completion", "No response received from Claude.")
+    except Exception as e:
+        return f"Error: {e}"
+
+# Streamlit app
+st.title("Streamlit App with Claude")
+st.write("This app uses the Claude model to generate responses. Enter a prompt below:")
+
+# Input for user prompt
+user_prompt = st.text_area("Enter your prompt here:", height=150)
+
+if st.button("Generate Response"):
+    if user_prompt.strip():
+        with st.spinner("Querying Claude..."):
+            response = query_claude(user_prompt)
+        st.success("Response received!")
+        st.write("### Claude's Response:")
+        st.write(response)
+    else:
+        st.error("Please enter a prompt before submitting!")
