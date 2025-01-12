@@ -10,5 +10,5 @@ hugging_face_api_key = st.secrets["HUGGING_FACE_API_KEY"]
 
 
 st.title('Test')
-st.write('PINE_CONE_API: ' pine_cone_api_key)
+st.write('PINE_CONE_API: ' , pine_cone_api_key)
 
