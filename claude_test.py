@@ -28,6 +28,13 @@ output = query({
 
 
 st.title('Test')
-st.write('PINE_CONE_API: ' , pine_cone_api_key)
-st.write('hugging_face_api_key: ' , hugging_face_api_key)
-st.write('answer', output)
+
+if isinstance(output, list) and 'generated_text' in output[0]:
+    # Extract the answer
+    if "Answer:" in generated_text:
+        answer = generated_text.split("Answer:")[1].strip()
+        st.write(answer)
+    else:
+        st.write("No 'Answer:' found in the generated text.")
+else:
+    st.write("Unexpected response format:", output)
