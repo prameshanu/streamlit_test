@@ -244,20 +244,25 @@ input_text=st.text_input("Search the topic u want")
 if input_text:
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
-	context = " ".join(doc.page_content for doc in filtered_docs)
-	# Search the index for the two most similar vectors
-	prompt = prompt_template.format(context=context, input=input_text)
-	messages = [
-		{
-			"role": "user",
-			"content": prompt
-		}
-	]
-	
-	completion = client.chat.completions.create(
-	    model="mistralai/Mistral-7B-Instruct-v0.2", 
-		messages=messages, 
-		max_tokens=500
-	)
-	st.write (completion.choices[0].message.content)
+	if filtered_docs:
+		# Create your chain using the filtered documents
+		context = " ".join(doc.page_content for doc in filtered_docs)
+		# Search the index for the two most similar vectors
+		prompt = prompt_template.format(context=context, input=input_text)
+		messages = [
+			{
+				"role": "user",
+				"content": prompt
+			}
+		]
+		
+		completion = client.chat.completions.create(
+		    model="mistralai/Mistral-7B-Instruct-v0.2", 
+			messages=messages, 
+			max_tokens=500
+		)
+	        a = completion.choices[0].message.content
+	else:
+	        a = "I don't have enough information to answer this question."
+	st.write (a)
 
