@@ -11,6 +11,7 @@ import anthropic
 # Define the API URL and key
 # api_url = "https://api.anthropic.com/v1/completions"  # Confirm with Anthropic if this is the latest endpoint
 api_url = "https://api.anthropic.com/v1/messages"
+
 api_key = "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"  
 
 import anthropic
@@ -31,18 +32,8 @@ prompt = "What are the benefits of exercise?"
 #     st.write(f"Error occurred: {e}")
 
 class ClaudeLLM:
-        def __init__(self, api_key, model="claude-3-5-sonnet-20241022"):
-            self.api_key = api_key
-            self.model = model
-            self.base_url = "https://api.anthropic.com/v1/complete"
 
-
-        def query(self, prompt, max_tokens=1024):
-                
-                client = anthropic.Client(
-                    # defaults to os.environ.get("ANTHROPIC_API_KEY")
-                    api_key=self.api_key,
-                )
+        def query( prompt, max_tokens=1024):
                 # Ensure the prompt starts with the correct conversational structure
                 message = client.messages.create(
                 model="claude-3-5-sonnet-20241022",
@@ -66,5 +57,4 @@ llm = ClaudeLLM(api_key)
 # """
 
 a = llm.query(prompt)
-a
 st.write(a)
