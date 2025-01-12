@@ -27,22 +27,22 @@ class ClaudeLLM:
 
         def query(self, prompt, max_tokens=1024):
                 
-        client = anthropic.Anthropic(
-            # defaults to os.environ.get("ANTHROPIC_API_KEY")
-            api_key=my_api_key,
-        )
-        # Ensure the prompt starts with the correct conversational structure
-        message = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
-        max_tokens=max_tokens,
-        messages=[
-        {"role": "user", "content": f"{prompt}"}
-        ]            
-        )
-        # Iterate over the list and extract text from each TextBlock
-        extracted_texts = [block.text for block in message.content]
-        
-        return extracted_texts
+                client = anthropic.Anthropic(
+                    # defaults to os.environ.get("ANTHROPIC_API_KEY")
+                    api_key=my_api_key,
+                )
+                # Ensure the prompt starts with the correct conversational structure
+                message = client.messages.create(
+                model="claude-3-5-sonnet-20241022",
+                max_tokens=max_tokens,
+                messages=[
+                {"role": "user", "content": f"{prompt}"}
+                ]            
+                )
+                # Iterate over the list and extract text from each TextBlock
+                extracted_texts = [block.text for block in message.content]
+                
+                return extracted_texts
 
         
 # Initialize Claude LLM
