@@ -1,5 +1,9 @@
 import anthropic
 
+import streamlit as st
+# Streamlit Framework
+st.title('Langchain Demo incorporating Hybrid Search With LLAMA2 API')
+
 
 class MyLLM:
     def query(self, prompt):
@@ -26,4 +30,5 @@ class MyLLM:
 llm = MyLLM()
 prompt = "What are the benefits of exercise?"
 response = llm.query(prompt)
-print(response)
+
+st.write(response)
