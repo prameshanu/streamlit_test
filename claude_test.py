@@ -244,7 +244,6 @@ input_text=st.text_input("Search the topic u want")
 if input_text:
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
-	st.write(filtered_docs)
 	context = " ".join(doc.page_content for doc in filtered_docs)
 	# Search the index for the two most similar vectors
 	prompt = prompt_template.format(context=context, input=input_text)
