@@ -50,7 +50,7 @@ class ClaudeLLM:
         
 # # Initialize Claude LLM
 # api_key = my_api_key
-llm = ClaudeLLM(api_key)
+llm = ClaudeLLM()
 
 # prompt = """
 # what is olympic games
