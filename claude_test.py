@@ -8,7 +8,6 @@ st.title('Claude TEST API')
 
 import anthropic
 
-
 # Define the API URL and key
 # api_url = "https://api.anthropic.com/v1/completions"  # Confirm with Anthropic if this is the latest endpoint
 api_url = "https://api.anthropic.com/v1/messages"
@@ -27,7 +26,7 @@ class ClaudeLLM:
 
         def query(self, prompt, max_tokens=1024):
                 
-                client = anthropic.Anthropic(
+                client = anthropic.Client(
                     # defaults to os.environ.get("ANTHROPIC_API_KEY")
                     api_key=my_api_key,
                 )
