@@ -268,8 +268,8 @@ def rag(input_text):
 			max_tokens=500
 		)
 		answer = completion.choices[0].message.content
-		st.write(answer)
-		st.write("Source citation : ",source_info)
+		st.write("**BOT :** ", answer)
+		st.write("**Source citation :** ",source_info)
 	else:
 	        st.write("I don't have enough information to answer this question.")
 	
