@@ -220,8 +220,8 @@ Question: {input}
 """)
 
 
-API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-xxl"
-# API_URL = "https://api-inference.huggingface.co/models/bigscience/bloom"
+# API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-xxl" # Service unavailable
+API_URL = "https://api-inference.huggingface.co/models/bigscience/bloom"
 
 # API_URL = "https://api-inference.huggingface.co/models/google/gemma-2-2b-it"
 # API_URL = "https://api-inference.huggingface.co/models/gpt2"
