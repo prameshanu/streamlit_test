@@ -223,7 +223,8 @@ Question: {input}
 # API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-xxl" # Service unavailable
 # API_URL = "https://api-inference.huggingface.co/models/bigscience/bloom" # Incomplete answer
 # API_URL = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-8B" # Too large to be loaded
-API_URL = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B"
+# API_URL = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B"
+API_URL = "https://api-inference.huggingface.co/models/openai-community/gpt2"
 # API_URL = "https://api-inference.huggingface.co/models/google/gemma-2-2b-it"
 # API_URL = "https://api-inference.huggingface.co/models/gpt2"
 headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
