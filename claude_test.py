@@ -143,6 +143,7 @@ for file in file_path:
     # Optionally, remove the file after processing
     # os.remove(local_path)
 
+st.write(len(docs))
 st.write(len(documents))
 
 def preprocess_documents(docs):
