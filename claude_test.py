@@ -138,12 +138,14 @@ for file in file_path:
     # Use TextLoader to load the file
     loader = TextLoader(local_path)
     docs = loader.load()
-    docs1.extend(docs)  # Add to the list of documents
+    documents.extend(docs)  # Add to the list of documents
     
     # Optionally, remove the file after processing
     # os.remove(local_path)
 
-
+st.write(documents[0])
+st.write(documents[1])
+st.write(len(documents))
 
 def preprocess_documents(docs):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=10)
