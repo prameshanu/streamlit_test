@@ -249,6 +249,8 @@ def rag(input_text):
 			if doc1.page_content == docs.page_content :
 				st.write("matched")
 				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
+			else:
+				st.write("not matched")
 		
 	
 	st.write(source)
