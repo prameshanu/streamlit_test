@@ -1,40 +1,55 @@
 import streamlit as st
-import anthropic
+from hugchat import hugchat
+from hugchat.login import Login
 
-# Claude API Key (keep this secure!)
-API_KEY = "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"
+# App title
+st.set_page_config(page_title="🤗💬 HugChat")
 
-# Initialize the Claude client
-client = anthropic.Client(api_key=API_KEY)
-
-# Function to query Claude model
-def query_claude(prompt, max_tokens=300):
-    try:
-        
-        response = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=max_tokens,
-            messages=[
-                {"role": "user", "content": f"{prompt}"}
-            ]            
-            )
-        return response.get("completion", "No response received from Claude.")
-    except Exception as e:
-        return f"Error: {e}"
-
-# Streamlit app
-st.title("Streamlit App with Claude")
-st.write("This app uses the Claude model to generate responses. Enter a prompt below:")
-
-# Input for user prompt
-user_prompt = st.text_area("Enter your prompt here:", height=150)
-
-if st.button("Generate Response"):
-    if user_prompt.strip():
-        with st.spinner("Querying Claude..."):
-            response = query_claude(user_prompt)
-        st.success("Response received!")
-        st.write("### Claude's Response:")
-        st.write(response)
+# Hugging Face Credentials
+with st.sidebar:
+    st.title('🤗💬 HugChat')
+    if ('EMAIL' in st.secrets) and ('PASS' in st.secrets):
+        st.success('HuggingFace Login credentials already provided!', icon='✅')
+        hf_email = st.secrets['EMAIL']
+        hf_pass = st.secrets['PASS']
     else:
-        st.error("Please enter a prompt before submitting!")
+        hf_email = st.text_input('Enter E-mail:', type='password')
+        hf_pass = st.text_input('Enter password:', type='password')
+        if not (hf_email and hf_pass):
+            st.warning('Please enter your credentials!', icon='⚠️')
+        else:
+            st.success('Proceed to entering your prompt message!', icon='👉')
+    st.markdown('📖 Learn how to build this app in this [blog](https://blog.streamlit.io/how-to-build-an-llm-powered-chatbot-with-streamlit/)!')
+    
+# Store LLM generated responses
+if "messages" not in st.session_state.keys():
+    st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
+
+# Display chat messages
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.write(message["content"])
+
+# Function for generating LLM response
+def generate_response(prompt_input, email, passwd):
+    # Hugging Face Login
+    sign = Login(email, passwd)
+    cookies = sign.login()
+    # Create ChatBot                        
+    chatbot = hugchat.ChatBot(cookies=cookies.get_dict())
+    return chatbot.chat(prompt_input)
+
+# User-provided prompt
+if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.write(prompt)
+
+# Generate a new response if last message is not from assistant
+if st.session_state.messages[-1]["role"] != "assistant":
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            response = generate_response(prompt, hf_email, hf_pass) 
+            st.write(response) 
+    message = {"role": "assistant", "content": response}
+    st.session_state.messages.append(message)
