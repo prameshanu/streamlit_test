@@ -246,7 +246,7 @@ def rag(input_text):
 	source = set()  # Initialize a set to store unique items
 	for docs in filtered_docs:
 	    for doc1 in documents:
-	        if doc1.page_content == docs.page_content:
+	        if doc1.page_content == docs.page_content :
 			source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
 		else: 
 			continue
