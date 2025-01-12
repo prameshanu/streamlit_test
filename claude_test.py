@@ -21,7 +21,7 @@ def query(payload):
 	return response.json()
 	
 output = query({
-	"inputs": prompt,
+	"inputs": 'What is ChatGPT',
 })
 
 
