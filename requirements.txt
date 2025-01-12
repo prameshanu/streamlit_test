@@ -2,4 +2,5 @@ langchain
 langchain-community
 langchain-core
 langchain-huggingface
+sentence-transformers
 streamlit
