@@ -260,7 +260,8 @@ def rag(input_text):
 			messages=messages, 
 			max_tokens=500
 		)
-		st.write(completion.choices[0].message.content)
+		answer = completion.choices[0].message.content
+		st.write(answer)
 	else:
 	        st.write("I don't have enough information to answer this question.")
 	
