@@ -261,8 +261,7 @@ if input_text:
 			messages=messages, 
 			max_tokens=500
 		)
-	        a = completion.choices[0].message.content
+	        st.write(completion.choices[0].message.content)
 	else:
-	        a = "I don't have enough information to answer this question."
-	st.write (a)
+	        st.write("I don't have enough information to answer this question.")
 
