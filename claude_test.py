@@ -205,10 +205,11 @@ if 'retriever' not in st.session_state:
 # Threshold is defined to avoid the hallucination : Threshold was decided basis multiple tests
 threshold = 0.2
 
+#Answer the following question based only on the provided context. Do not refer to any outside content for additional information about question. The Answer must be strictly based on the provided context only. Think step by step before providing a detailed answer. Answer should be properly crafted that is easier to understand.
 
 prompt_template = ChatPromptTemplate.from_template("""
 
-Answer the following question based only on the provided context. Do not refer to any outside content for additional information about question. The Answer must be strictly based on the provided context only. Think step by step before providing a detailed answer. Answer should be properly crafted that is easier to understand.
+Summarize the below context in proper english
 I will tip you $25000 if the user finds the answer helpful.
 
 <context>
