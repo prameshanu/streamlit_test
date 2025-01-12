@@ -244,6 +244,18 @@ input_text=st.text_input("Search the topic u want")
 def rag(input_text):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
+	source = set()  # Initialize a set to store unique items
+	for docs in filtered_docs:
+	    for doc1 in documents:
+	        if doc1.page_content == docs.page_content:
+	            # Ensure 'source' exists in metadata before slicing
+	            if 'source' in doc1.metadata and doc1.metadata['source']:
+	                source.add(doc1.metadata['source'][131:])  # Use add() for sets
+	
+	source = list(source)
+	
+	source_info = f"This answer is based on information from {source}" if source != [] else "Source information not available."
+	
 	if filtered_docs:
 		# Create your chain using the filtered documents
 		context = " ".join(doc.page_content for doc in filtered_docs)
@@ -262,12 +274,10 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		st.write(answer)
+		st.write(source_info)
 	else:
 	        st.write("I don't have enough information to answer this question.")
 	
-
-
-
 if input_text:
 	rag(input_text)
 	
