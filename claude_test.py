@@ -250,6 +250,7 @@ def rag(input_text):
 				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
 		
 		# source = list(source)
+	st.write(source)
 	if source != set():
 		source_info = f"This answer is based on information from {source}" 
 	else:
