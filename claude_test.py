@@ -143,19 +143,12 @@ for file in file_path:
     # Optionally, remove the file after processing
     # os.remove(local_path)
 
-st.write(documents[0])
-st.write(documents[1])
-st.write(len(documents))
 
 def preprocess_documents(docs):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=10)
     return text_splitter.split_documents(docs)
 
 documents = preprocess_documents(documents)
-
-st.write(documents[0])
-st.write(documents[1])
-st.write(len(documents))
 
 index_name = "hybrid-search-langchain-pinecone"
 
@@ -250,10 +243,7 @@ def rag(input_text):
 	for doc in filtered_docs:
 		for doc1 in documents:
 			if doc.page_content == doc1.page_content :
-				st.write("matched")
 				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
-			else:
-				st.write("not matched")
 		
 	
 	st.write(source)
