@@ -240,7 +240,7 @@ headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 st.title('Ancient Greek Q & A Chatbot ')
 
 input_text=st.text_input("Search the topic u want")
-st.write(documents[0])
+st.write(documents[0].id['metadata'])
 def rag(input_text):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
