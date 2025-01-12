@@ -243,16 +243,16 @@ input_text=st.text_input("Search the topic u want")
 def rag(input_text):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
-	source = set()  # Initialize a set to store unique items
+	source = []  # Initialize a set to store unique items
 	for docs in filtered_docs:
 	    for doc1 in documents:
 	        if doc1.page_content == docs.page_content :
-			source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
+			source.append(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
 		else: 
 			continue
 		# source = list(source)
 	
-	if source != set():
+	if source != []:
 		source_info = f"This answer is based on information from {source}" 
 	else:
 		"Source information not available."
