@@ -250,7 +250,7 @@ def rag(input_text):
 	        if doc1.page_content == docs.page_content:
 	            # Ensure 'source' exists in metadata before slicing
 	            if 'source' in doc1.metadata and doc1.metadata['source']:
-	                source.add(doc1.metadata['source'][131:])  # Use add() for sets
+	                source.add(doc1.metadata['source'][50:])  # Use add() for sets
 	
 	source = list(source)
 	if source != set():
