@@ -24,7 +24,7 @@ prompt = "What are the benefits of exercise?"
 
 try:
     # Query Claude model
-    response = client.messages.create(prompt=prompt)
+    response = client.messages.create(prompt=prompt, max_tokens=1024, model="claude-3-5-sonnet-20241022")
     st.write(response['text'])
 except anthropic.AuthenticationError as e:
     st.write(f"Authentication failed: {e}")
