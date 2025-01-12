@@ -138,19 +138,18 @@ for file in file_path:
     # Use TextLoader to load the file
     loader = TextLoader(local_path)
     docs = loader.load()
-    documents.extend(docs)  # Add to the list of documents
+    docs1.extend(docs)  # Add to the list of documents
     
     # Optionally, remove the file after processing
     # os.remove(local_path)
 
-st.write(len(docs))
-st.write(len(documents))
+
 
 def preprocess_documents(docs):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=10)
     return text_splitter.split_documents(docs)
 
-documents = preprocess_documents(docs)
+documents = preprocess_documents(docs1)
 
 index_name = "hybrid-search-langchain-pinecone"
 
