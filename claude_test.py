@@ -151,7 +151,11 @@ def preprocess_documents(docs):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=10)
     return text_splitter.split_documents(docs)
 
-documents = preprocess_documents(docs1)
+documents = preprocess_documents(documents)
+
+st.write(documents[0])
+st.write(documents[1])
+st.write(len(documents))
 
 index_name = "hybrid-search-langchain-pinecone"
 
