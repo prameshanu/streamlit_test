@@ -219,6 +219,8 @@ output = query({
 
 st.title('Test')
 
+st.write(documents[:1])
+
 if isinstance(output, list) and 'generated_text' in output[0]:
 	# Extract the answer
 	generated_text = output[0]['generated_text']
