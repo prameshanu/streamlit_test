@@ -254,7 +254,7 @@ def rag(input_text):
 	
 	source = list(source)
 	
-	source_info = f"This answer is based on information from {source}" if source != [] else "Source information not available."
+	source_info = f"This answer is based on information from {source}" if source != set() else "Source information not available."
 	
 	if filtered_docs:
 		# Create your chain using the filtered documents
