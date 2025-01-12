@@ -253,8 +253,10 @@ def rag(input_text):
 	                source.add(doc1.metadata['source'][131:])  # Use add() for sets
 	
 	source = list(source)
-	
-	source_info = f"This answer is based on information from {source}" if source != set() else "Source information not available."
+	if source != set():
+		source_info = f"This answer is based on information from {source}" 
+	else:
+		"Source information not available."
 	
 	if filtered_docs:
 		# Create your chain using the filtered documents
