@@ -3,4 +3,6 @@ langchain-community
 langchain-core
 langchain-huggingface
 sentence-transformers
+pinecone
+pinecone-client
 streamlit
