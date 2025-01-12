@@ -263,7 +263,7 @@ def rag(input_text):
 			}
 		]
 		completion = client.chat.completions.create(
-			model="mistralai/Mistral-7B-Instruct-v0.2", 
+			model="mistralai/Mistral-7B-Instruct-v0.2",  # LLM Model: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2
 			messages=messages, 
 			max_tokens=500
 		)
