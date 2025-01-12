@@ -245,7 +245,7 @@ def rag(input_text):
 			if doc.page_content == doc1.page_content :
 				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
 		
-	
+
 	if source != set():
 		source_info = f"This answer is based on information from the files :  {list(source)}" 
 	else:
@@ -269,7 +269,7 @@ def rag(input_text):
 		)
 		answer = completion.choices[0].message.content
 		st.write(answer)
-		st.write(source_info)
+		st.write("Source citation : ",source_info)
 	else:
 	        st.write("I don't have enough information to answer this question.")
 	
