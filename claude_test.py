@@ -211,7 +211,7 @@ prompt_template = ChatPromptTemplate.from_template("""
 Answer the following question based only on the provided context. Think step by step before providing a detailed answer. Answer should be properly crafted that is easier to understand.
 I will tip you $25000 if the user finds the answer helpful.
 
-Also remove additional details like " Based on the provided contex... " or "I cannot fulfill the rest of the question without additional context."
+Do not write these things in answer " Based on the provided contex... " or "I cannot fulfill the rest of the question without additional context."
 
 <context>
 {context}
