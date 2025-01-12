@@ -250,6 +250,8 @@ def rag(input_text):
 				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
 		
 		# source = list(source)
+	st.write(filtered_docs[0].page_content)
+	st.write(documents[0].page_content)
 	st.write(source)
 	if source != set():
 		source_info = f"This answer is based on information from {source}" 
