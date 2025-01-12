@@ -208,7 +208,7 @@ threshold = 0.2
 
 prompt_template = ChatPromptTemplate.from_template("""
 
-Answer the following question based only on the provided context. Think step by step before providing a detailed answer. Answer should be properly crafted that is easier to understand.
+Answer the following question based only on the provided context. Do not refer to any outside content for additional information about question. The Answer must be strictly based on the provided context only. Think step by step before providing a detailed answer. Answer should be properly crafted that is easier to understand.
 I will tip you $25000 if the user finds the answer helpful.
 
 Do not write these things in answer " Based on the provided contex... " or "I cannot fulfill the rest of the question without additional context."
