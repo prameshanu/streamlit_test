@@ -11,13 +11,13 @@ import anthropic
 # Define the API URL and key
 # api_url = "https://api.anthropic.com/v1/completions"  # Confirm with Anthropic if this is the latest endpoint
 api_url = "https://api.anthropic.com/v1/messages"
-my_api_key = "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"  # Replace with your API key
+api_key = "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"  # Replace with your API key
 
 
 import anthropic
 
 # Initialize the Anthropic client with the correct API key
-client = anthropic.Client(api_key=my_api_key)
+client = anthropic.Client(api_key=api_key)
 
 # Define the prompt for Claude
 prompt = "What are the benefits of exercise?"
@@ -60,7 +60,7 @@ class ClaudeLLM:
         
 # # Initialize Claude LLM
 # api_key = my_api_key
-llm = ClaudeLLM(my_api_key)
+llm = ClaudeLLM(api_key)
 
 # prompt = """
 # what is olympic games
