@@ -10,12 +10,14 @@ client = anthropic.Client(api_key=API_KEY)
 # Function to query Claude model
 def query_claude(prompt, max_tokens=300):
     try:
-        response = client.completion(
-            model="claude-2",
-            prompt=f"{anthropic.HUMAN_PROMPT} {prompt} {anthropic.AI_PROMPT}",
-            max_tokens_to_sample=max_tokens,
-            stop_sequences=[anthropic.HUMAN_PROMPT]
-        )
+        
+        response = client.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=max_tokens,
+            messages=[
+                {"role": "user", "content": f"{prompt}"}
+            ]            
+            )
         return response.get("completion", "No response received from Claude.")
     except Exception as e:
         return f"Error: {e}"
