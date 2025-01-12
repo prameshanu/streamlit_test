@@ -150,7 +150,7 @@ def preprocess_documents(docs):
     return text_splitter.split_documents(docs)
 
 documents = preprocess_documents(docs)
-
+st.write(len(documents))
 
 index_name = "hybrid-search-langchain-pinecone"
 
@@ -236,9 +236,8 @@ client = InferenceClient(api_key=hugging_face_api_key)
 
 headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 
-
-st.title('Ancient Greek Q & A Chatbot ')
 st.write(len(documents))
+st.title('Ancient Greek Q & A Chatbot ')
 input_text=st.text_input("Search the topic u want")
 def rag(input_text):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
