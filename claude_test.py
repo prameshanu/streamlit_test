@@ -230,7 +230,7 @@ def query(payload):
 	return response.json()
 
 
-st.title('Chatbot Test')
+st.title('Ancient Greek Chatbot Test')
 
 input_text=st.text_input("Search the topic u want")
 
