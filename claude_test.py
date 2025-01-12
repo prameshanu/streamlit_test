@@ -245,11 +245,11 @@ def rag(input_text):
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
 	source = []  # Initialize a set to store unique items
 	for docs in filtered_docs:
-	    for doc1 in documents:
-	        if doc1.page_content == docs.page_content :
-			source.append(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
-		else: 
-			continue
+		for doc1 in documents:
+			if doc1.page_content == docs.page_content :
+				source.append(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
+			else: 
+				continue
 		# source = list(source)
 	
 	if source != []:
