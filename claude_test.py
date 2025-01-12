@@ -247,8 +247,10 @@ def rag(input_text):
 	for docs in filtered_docs:
 	    for doc1 in documents:
 	        if doc1.page_content == docs.page_content:
-			source.add(doc1.metadata['source'].split('/')[-1][10:])  # Use add() for sets
-		source = list(source)
+			source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
+		else: 
+			continue
+		# source = list(source)
 	
 	if source != set():
 		source_info = f"This answer is based on information from {source}" 
