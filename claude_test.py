@@ -240,10 +240,6 @@ headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 st.title('Ancient Greek Q & A Chatbot ')
 
 input_text=st.text_input("Search the topic u want")
-a = documents[0].metadata['source'].split('/')[-1][10:]
-b= documents[0].metadata['source'][-1]
-st.write(a)
-st.write(b)
 def rag(input_text):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
@@ -253,7 +249,7 @@ def rag(input_text):
 	        if doc1.page_content == docs.page_content:
 	            # Ensure 'source' exists in metadata before slicing
 	            if 'source' in doc1.metadata and doc1.metadata['source']:
-	                source.add(doc1.metadata['source'][5:])  # Use add() for sets
+	                source.add(doc1.metadata['source'].split('/')[-1][10:])  # Use add() for sets
 	
 	source = list(source)
 	if source != set():
