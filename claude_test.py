@@ -143,14 +143,13 @@ for file in file_path:
     # Optionally, remove the file after processing
     # os.remove(local_path)
 
-
+st.write(len(documents))
 
 def preprocess_documents(docs):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=10)
     return text_splitter.split_documents(docs)
 
 documents = preprocess_documents(docs)
-st.write(len(documents))
 
 index_name = "hybrid-search-langchain-pinecone"
 
@@ -236,16 +235,15 @@ client = InferenceClient(api_key=hugging_face_api_key)
 
 headers = {"Authorization": f"Bearer {hugging_face_api_key}"}
 
-st.write(len(documents))
 st.title('Ancient Greek Q & A Chatbot ')
 input_text=st.text_input("Search the topic u want")
 def rag(input_text):
 	retrieved_docs = st.session_state['retriever'].get_relevant_documents(input_text)
 	filtered_docs = [doc for doc in retrieved_docs if doc.metadata.get('score', 0) >= threshold]
 	source = set()  # Initialize a set to store unique items
-	for docs in filtered_docs:
+	for doc in filtered_docs:
 		for doc1 in documents:
-			if doc1.page_content == docs.page_content :
+			if doc.page_content == doc1.page_content :
 				st.write("matched")
 				source.add(doc1.metadata['source'].split('/')[-1][10:]) # Use add() for sets
 			else:
